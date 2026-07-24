@@ -1,15 +1,14 @@
-n = int(input('Masukkan bilangan bulat antara 3 dan 9: '))
+import sys
 
-while n < 3 or n > 9:
-    print('Bilangan tidak valid!')
+# 1. Objek baru dibuat
+x = ["Python", "2026"]
+print(sys.getrefcount(x))  # Output: 2 (x + argumen fungsi)
 
-    n = int(input('Masukkan bilangan bulat antara 3 dan 9: '))
+# 2. Kita tambah dua variabel baru yang menunjuk ke objek yang sama
+y = x
+z = x
+print(sys.getrefcount(x))  # Output: 4 (x, y, z + argumen fungsi)
 
-for i in range(1, n + 1):
-    for j in range(1, n - i + 1):
-        print(' ', end='')
-
-    for j in range(1, 2 * i):
-        print(n, end='')
-
-    print()
+# 3. Kita hapus satu referensi menggunakan 'del'
+del y
+print(sys.getrefcount(x))  # Output: 3 (x, z + argumen fungsi)
